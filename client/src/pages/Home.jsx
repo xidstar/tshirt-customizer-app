@@ -4,6 +4,7 @@ import { useSnapshot } from 'valtio';
 import {headContainerAnimation, headContentAnimation, headTextAnimation, slideAnimation} from '../config/motion';
 import state from '../store';
 import { CustomButton } from '../components';
+import {getContrastingColor} from '../config/helpers'
 
 const Home = () => {
   const snap = useSnapshot(state);
@@ -17,12 +18,16 @@ const Home = () => {
           </motion.header>
           <motion.div className='home-content' {...headContainerAnimation}>
             <motion.div {...headTextAnimation}>
-              <h1 className='head-text'>
-                LET'S <br className='xl:block hidden' /> DO IT.
+              <h1 
+                style={{color: getContrastingColor(snap.color)}}
+                className='head-text'>
+                LET'S <br className='xl:block hidden' /> DO IT!
               </h1>
             </motion.div>
             <motion.div {...headContentAnimation} className='flex flex-col gap-5'>
-              <p className='max-w-md font-normal text-gray-600 text-base'>
+              <p 
+                style={{color: getContrastingColor(snap.color)}}
+                className='max-w-md font-normal text-base'>
                 Create your unique and exclusive tshirt with our brand-new 3D customization tool. <strong>Unleash your imagination</strong> {' '} and define your style.
               </p>
 
