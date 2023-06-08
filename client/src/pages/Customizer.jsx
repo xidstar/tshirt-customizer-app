@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
 
@@ -12,10 +12,8 @@ import { TextEditor, ColorPicker, CustomButton, FilePicker, Tab } from '../compo
 
 const Customizer = () => {
   const snap = useSnapshot(state);
-
+const tabRef = useRef(null);
   const [file, setFile] = useState('');
-
-  
 
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
@@ -23,11 +21,12 @@ const Customizer = () => {
     stylishShirt: false,
   })
 
+  
   // show tab content depending on the activeTab
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
-        return <ColorPicker />
+        return <ColorPicker  />
       case "filepicker":
         return <FilePicker
           file={file}
@@ -84,6 +83,19 @@ const Customizer = () => {
       })
   }
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (tabRef.current && !tabRef.current.contains(event.target)) {
+        setActiveEditorTab("");
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <AnimatePresence>
       {!snap.intro && (
@@ -94,7 +106,7 @@ const Customizer = () => {
             {...slideAnimation('left')}
           >
             <div className="flex items-center min-h-screen">
-              <div className="editortabs-container tabs">
+              <div ref={tabRef} className="editortabs-container tabs">
                 {EditorTabs.map((tab) => (
                   <Tab 
                     key={tab.name}

@@ -22,7 +22,6 @@ const ColorPicker = () => {
           "#ff96ad",
           "#512314",
           "#5f123d",
-          "#353934"
         ]}
         onChange={(color) => state.color = color.hex}
       />

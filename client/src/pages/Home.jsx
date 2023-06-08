@@ -23,7 +23,7 @@ const Home = () => {
             </motion.div>
             <motion.div {...headContentAnimation} className='flex flex-col gap-5'>
               <p className='max-w-md font-normal text-gray-600 text-base'>
-                Create your unique and exclusive tshirt with our brand-new 3D customization tool. <strong>Explore your imagination</strong> {' '} and define your style.
+                Create your unique and exclusive tshirt with our brand-new 3D customization tool. <strong>Unleash your imagination</strong> {' '} and define your style.
               </p>
 
               <CustomButton
