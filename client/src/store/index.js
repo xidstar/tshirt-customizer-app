@@ -4,14 +4,14 @@ const state = proxy({
   intro: true,
   color: '#efbd48',
   text: '',
-  font: 'Cherry Bomb One',
+  font: 'Roboto',
   fontColor: 'black',
   fontStyle: 'normal',
   size: 50,
   isLogoTexture: true,
   isFullTexture: false,
-  logoDecal: './threejs.png',
-  fullDecal: './threejs.png',
+  logoDecal: './react.png',
+  fullDecal: './react.png',
 })
 
 export default state;
